@@ -95,5 +95,3 @@ This shared variable setup allows tasks to be loosely coupled, simplifying commu
 ## Summary
 
 This project implements a multi-tasking system where sensor data is continuously collected, processed, and transmitted while an LED is controlled in response to user input. The RTOS provides task scheduling, ensuring efficient use of CPU time, while shared global variables facilitate straightforward data sharing between tasks. The modular task-based design allows for easy expansion or modification to accommodate additional features or peripherals.
-
-Save this file as README.md in the root directory of your GitHub repository. This comprehensive README provides clear documentation on the system components, individual task functionality, and their interdependencies, which should help others understand and contribute to the project.
