@@ -1,19 +1,13 @@
-Embedded RTOS Project
+# RTOS STM32 Task2
+# Embedded RTOS Project
 
 This project leverages a Real-Time Operating System (RTOS) to manage and synchronize multiple tasks on an embedded platform. The primary functions include reading and processing analog sensor data, controlling an LED based on button input, and communicating status information over UART.
-Table of Contents
 
-    Overview
-    System Components
-    Tasks
-        StartDefaultTask
-        Startledtask
-        Startbutontask
-        StartTask04
-    Inter-Task Communication
-    Summary
+## Demontration Video
 
-Overview
+https://github.com/user-attachments/assets/29c1acab-92fb-40b4-b253-c92adde6389f
+
+## Overview
 
 This project is designed to run on an RTOS platform, with four main tasks:
 
@@ -30,8 +24,8 @@ System Components
     GPIO (General Purpose Input/Output): Used for reading button input and controlling LED output.
     RTOS: Manages task scheduling and execution.
 
-Tasks
-StartDefaultTask
+## Tasks
+### StartDefaultTask
 
 Purpose: This task reads an analog value from an ADC channel and updates a shared global variable adc_value with the most recent reading.
 
@@ -45,7 +39,7 @@ Purpose: This task reads an analog value from an ADC channel and updates a share
 
     RTOS Priority: Runs at a normal priority, ensuring it doesn't interrupt more time-sensitive tasks.
 
-Startledtask
+### Startledtask
 
 Purpose: This task reads the adc_value set by StartDefaultTask, calculates the corresponding voltage, and sends this information via UART.
 
@@ -60,7 +54,7 @@ Purpose: This task reads the adc_value set by StartDefaultTask, calculates the c
 
     RTOS Priority: Runs at a normal priority, spaced apart from sensor reading to avoid potential conflicts.
 
-Startbutontask
+### Startbutontask
 
 Purpose: This task monitors a button connected to a GPIO pin, debounces the input, and toggles an led_status variable based on button presses.
 
@@ -75,7 +69,7 @@ Purpose: This task monitors a button connected to a GPIO pin, debounces the inpu
 
     RTOS Priority: Also runs at a normal priority, as it is a responsive but not critical task in the system.
 
-StartTask04
+### StartTask04
 
 Purpose: This task reads the led_status variable and sets the actual LED GPIO accordingly. Additionally, it sends the LED state over UART.
 
@@ -90,7 +84,7 @@ Purpose: This task reads the led_status variable and sets the actual LED GPIO ac
 
     RTOS Priority: Runs at a normal priority, coordinated with other tasks to avoid resource contention.
 
-Inter-Task Communication
+## Inter-Task Communication
 
 The tasks interact through shared global variables:
 
@@ -98,7 +92,7 @@ The tasks interact through shared global variables:
     led_status: Updated by Startbutontask, accessed by StartTask04.
 
 This shared variable setup allows tasks to be loosely coupled, simplifying communication without needing complex inter-task messaging mechanisms like queues or semaphores.
-Summary
+## Summary
 
 This project implements a multi-tasking system where sensor data is continuously collected, processed, and transmitted while an LED is controlled in response to user input. The RTOS provides task scheduling, ensuring efficient use of CPU time, while shared global variables facilitate straightforward data sharing between tasks. The modular task-based design allows for easy expansion or modification to accommodate additional features or peripherals.
 
